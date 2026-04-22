@@ -1,22 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-/* links in the navigation are in the hover or focus state. Code taken from HW 3*/ */
-nav a:hover, nav a:focus {border-style: dotted; border-width: 2px; border-color: #800000;}
 
-/*Write selector/rule property to position the default position for the skip class element. Code taken from HW 3*/
-.skip a {position: absolute; top: -1000px;}
+/* ── Skip link ── */
+/* Code taken from HW 3 */
+.skip a { position: absolute; top: -1000px; }
+.skip a:focus {
+    position: absolute;
+    top: 25px;
+    border-style: dashed;
+    border-width: 5px;
+    border-color: #2F65A7;
+    background-color: #FFCB05;
+}
 
+/* ── Base styles (smallest screens, < 402px) ── */
+body {
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #c44017;
+    margin: 3%;
+    padding: 4%;
+}
 
-/*Write selector/rule property to position the skip class element when it is in focus. Code taken from HW 3*/
-.skip a:focus {position: absolute; top: 25px; border-style: dashed; border-width: 5px; border-color: #2F65A7; background-color: #FFCB05;}
+h1 {
+    color: #ffffff;
+    text-shadow: 3px 3px #2f4c00;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    grid-row: 1/2;
+    grid-column: 1/-1;
+    z-index: 1;
+}
+h2 {
+    color: #ffffff;
+    text-shadow: 3px 3px #2f4c00;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+h3 {
+    color: #ffffff;
+    text-shadow: 2px 2px #2f4c00;
+    font-size: 1.1em;
+    margin-bottom: 12px;
+}
+p {
+    color: #ffffff;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+img {
+    display: block;
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+header img {
+    width: 85%;
+    height: auto;
+    border: 3px solid black;
+}
 
 .header_gif {
     width: 100%;
     height: auto;
     border-radius: 25px;
-        grid-row: 1/2;
-            grid-column: 1/-1;              
-
-
+    grid-row: 1/2;
+    grid-column: 1/-1;
 }
 .header_grid {
     display: grid;
@@ -25,61 +77,31 @@ nav a:hover, nav a:focus {border-style: dotted; border-width: 2px; border-color:
     text-align: center;
 }
 
-/* Defining ul grid. Template borrowed from HW 3 */
-.grid{
-
-	  /*General Styline*/
-      display: grid;
+/* Nav */
+.grid {
+    display: grid;
     grid-template-columns: repeat(1, 1fr);
-	  background-color: #00700f;
-	  padding: 10px;
-	  width:90%;
-	  height: auto;
-	  text-align: center;
-	  font-size: 1em;
-	  border: 3px solid black;
-	  border-radius: 25px;
-	  margin: 0 auto;
-      align-items: center;
-
-}
-body {
-  font-family: "Unbounded", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-    background-color: #c44017;
-    margin: 20%;
+    background-color: #00700f;
     padding: 10px;
-    gap: 10%;
-}
-
-img{
-    display: block;
-    width: 80%;
-  height: auto;
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-header img {
-    width: 65%;
+    width: 100%;
     height: auto;
+    text-align: center;
+    font-size: 0.9em;
     border: 3px solid black;
+    border-radius: 25px;
+    margin: 0 auto;
+    align-items: center;
 }
 .grid li {
-    /* display: block; */
-    padding: 10%;
+    padding: 5%;
     border: 2px solid rgb(76, 0, 61);
     border-radius: 15px;
     background-color: #fc7717;
     margin: 2%;
-        /* align-self: stretch; */
-        display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 3vh;
-
-    /* place-items: center; */
-
+    height: auto;
 }
 .grid li a {
     color: #ffffff;
@@ -87,166 +109,133 @@ header img {
     font-weight: bold;
     align-self: center;
 }
-.grid li a:hover {
-        color: #024513;
-    text-decoration: underline;
-}
-h3 {
-    color: #ffffff;
-    text-shadow: 2px 2px #2f4c00;
-    font-size: 1.5em;
-    margin-bottom: 15px;
-}
-h2 {
-    color: #ffffff;
-    text-shadow: 5px 5px #2f4c00;
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-h1 {
-    color: #ffffff;
-    text-shadow: 5px 5px #2f4c00;
-    font-size: 3em;
-    margin-bottom: 30px;
-    text-align: center;
-    grid-row: 1/2;
-    grid-column: 1/-1;
-    z-index: 1;
-}
-.grid-why-resource {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 20px;
-}
-.grid-why-resource li{
-    list-style: none;
-    color: #00274C;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-.grid-why-resource li:nth-child(odd) {
-    grid-column: 2/-1
-}
-.grid-why-resource li:nth-child(even) {
-    grid-column: 1/span 2
-}
-.tournament_gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-/* .most-popular {
- list-style: none;
-    gap: 20px;
-     color: #00274C;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    line-height: 1.5; */
-/* } */
-/* .resume-faq{
-    list-style: none;
-    gap: 20px;
-     color: #00274C;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    line-height: 1.5;} */
-/* .start-here-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: center;
-} */
-p {
-    color: #ffffff;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-footer {
-    text-align: center;
-    padding: 10%;
-    background-color: #2F65A7;
-    color: #ffffff;
-    margin-top: 40px;
-        border-radius: 15px;
-
-}
-footer a, footer p {
-    color: #ffffff;
-    list-style: none;
-
-    font-weight: bold;
-}
-
+.grid li a:hover { color: #024513; text-decoration: underline; }
+nav a:hover, nav a:focus { border-style: dotted; border-width: 2px; border-color: #800000; }
 .grid .active {
     background-color: #2b373f;
     color: #ffffff;
     border: 2px solid black;
     border-radius: 15px;
     text-decoration: underline;
- }
-
- span {
-    color: #00274C;
-    font-weight: bold;
-    font-size: 1.2em;
 }
 
-#year {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-@media screen and (min-width: 768px) {
-    .grid{
-
-	  /*General Styline*/
-      display: grid;
-    grid-template-columns: repeat(3, 1fr);
-	  background-color: #2F65A7;
-	  padding: 10px;
-	  width:90%;
-	  height: auto;
-	  text-align: center;
-	  font-size: 1em;
-	  border: 3px solid black;
-	  border-radius: 25px;
-	  margin: 0 auto;
-      align-items: center;
-
-}
-header img {
-    width: 25%;
-    height: auto;
-    /* border: 3px solid black; */
-}
-img{
-    display: block;
-    width: 50%;
-  height: auto;
-  margin: 0 auto;
-  margin-bottom: 40px;}
-body {
-  font-family: "Unbounded", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-    background-color: #c44017;
-    margin: 5%;
-    padding: 10%;
-    gap: 10%;
-}
-/* .most-popular {
+/* Gallery */
+.tournament_gallery {
     display: grid;
-    grid-template-columns: repeat(3
-    , 1fr);
- list-style: none;
-    gap: 20px;
-     color: #00274C;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+.tournament_gallery a img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #2f4c00;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.tournament_gallery a img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-color: #ffffff;
+}
 
-    } */
+/* Lightbox grow animation */
+@keyframes lb-grow {
+    from { transform: scale(0.6); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+.lb-image { animation: lb-grow 0.25s ease-out; }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 6%;
+    background-color: #2F65A7;
+    color: #ffffff;
+    margin-top: 30px;
+    border-radius: 15px;
+    font-size: 0.85em;
+}
+footer a, footer p {
+    color: #ffffff;
+    list-style: none;
+    font-weight: bold;
+}
+
+span { color: #00274C; font-weight: bold; font-size: 1.2em; }
+#year { color: #ffffff; font-weight: bold; font-size: 1.2em; }
+
+/* GIF reduced-motion fallback */
+.gif-hidden { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
+/* ── 402px and up ── */
+@media screen and (min-width: 402px) {
+    body {
+        margin: 20%;
+        padding: 10px;
+    }
+    h1 {
+        font-size: 3em;
+        margin-bottom: 30px;
+        text-shadow: 5px 5px #2f4c00;
+    }
+    h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-shadow: 5px 5px #2f4c00;
+    }
+    h3 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+    p { font-size: 1.2em; }
+    img {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+    header img { width: 65%; }
+    .grid {
+        width: 90%;
+        font-size: 1em;
+    }
+    .grid li {
+        padding: 10%;
+        height: 3vh;
+    }
+    .tournament_gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .tournament_gallery a img { height: 280px; }
+    footer { padding: 10%; font-size: 1em; }
+}
+
+/* ── 768px and up ── */
+@media screen and (min-width: 768px) {
+    body {
+        margin: 5%;
+        padding: 5%;
+    }
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        background-color: #2F65A7;
+    }
+    header img { width: 25%; }
+    img {
+        width: 50%;
+        margin-bottom: 40px;
+    }
+    .tournament_gallery { grid-template-columns: repeat(3, 1fr); }
+    .tournament_gallery a img {
+        width: 100%;
+        height: 280px;
+    }
 }
