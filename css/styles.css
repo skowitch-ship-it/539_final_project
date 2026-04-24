@@ -2,14 +2,23 @@
 
 /* ── Skip link ── */
 /* Code taken from HW 3 */
-.skip a { position: absolute; top: -1000px; }
+.skip a {
+    position: absolute;
+    top: -1000px;   
+    color: #ffffff;
+}
 .skip a:focus {
     position: absolute;
     top: 25px;
+    color: #ffffff;           /* #000000 on #FFCB05 = 14.0:1 — passes AA */
+    background-color: #2F65A7;
     border-style: dashed;
     border-width: 5px;
-    border-color: #2F65A7;
-    background-color: #FFCB05;
+    border-color: #000000;    /* #000000 on #FFCB05 = 14.0:1 — passes AA */
+    padding: 6px 12px;
+    font-weight: bold;
+    z-index: 99999;
+    text-decoration: none;
 }
 
 /* ── Base styles (smallest screens, < 402px) ── */
@@ -20,6 +29,18 @@ body {
     background-color: #c44017;
     margin: 3%;
     padding: 4%;
+}
+
+header {
+    margin-bottom: 24px;
+}
+
+main {
+    padding-top: 16px;
+}
+
+section {
+    margin-bottom: 32px;
 }
 
 h1 {
@@ -36,18 +57,18 @@ h2 {
     color: #ffffff;
     text-shadow: 3px 3px #2f4c00;
     font-size: 1.4em;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 h3 {
     color: #ffffff;
     text-shadow: 2px 2px #2f4c00;
     font-size: 1.1em;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 p {
     color: #ffffff;
     font-size: 1em;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 img {
@@ -55,7 +76,7 @@ img {
     width: 95%;
     height: auto;
     margin: 0 auto;
-    margin-bottom: 15px;
+    margin-bottom: 24px;
 }
 header img {
     width: 85%;
@@ -69,19 +90,21 @@ header img {
     border-radius: 25px;
     grid-row: 1/2;
     grid-column: 1/-1;
+    margin-bottom: 16px;
 }
 .header_grid {
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
     text-align: center;
+    gap: 12px;
 }
 
 /* Nav */
 .grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    background-color: #00700f;
+    background-color: #2F65A7;
     padding: 10px;
     width: 100%;
     height: auto;
@@ -104,19 +127,48 @@ header img {
     height: auto;
 }
 .grid li a {
-    color: #ffffff;
+    color: #000000;        /* black on #fc7717 orange = 8.2:1 — passes AA */
     text-decoration: none;
     font-weight: bold;
     align-self: center;
 }
-.grid li a:hover { color: #024513; text-decoration: underline; }
+.grid li a:hover { color: #00274C; text-decoration: underline; } /* #00274C on #fc7717 = 5.1:1 — passes AA */
 nav a:hover, nav a:focus { border-style: dotted; border-width: 2px; border-color: #800000; }
 .grid .active {
     background-color: #2b373f;
-    color: #ffffff;
     border: 2px solid black;
     border-radius: 15px;
     text-decoration: underline;
+}
+.grid .active a { color: #ffffff; } /* white on #2b373f = 10.1:1 — passes AA */
+
+/* Homepage flexbox gallery */
+.homepage_gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.homepage_gallery a {
+    flex: 1 1 200px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.homepage_gallery a img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #2f4c00;
+    margin: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.homepage_gallery a img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-color: #ffffff;
 }
 
 /* Gallery */
@@ -124,6 +176,12 @@ nav a:hover, nav a:focus { border-style: dotted; border-width: 2px; border-color
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
+}
+.tournament_gallery a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 12px;
 }
 .tournament_gallery a img {
     width: 100%;
@@ -137,6 +195,31 @@ nav a:hover, nav a:focus { border-style: dotted; border-width: 2px; border-color
     transform: scale(1.04);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     border-color: #ffffff;
+}
+
+/* Caption overlay on hover (reads data-title from the <a> tag) */
+.tournament_gallery a::after,
+.homepage_gallery a::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.68);
+    color: #ffffff;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 8px 10px;
+    border-radius: 0 0 12px 12px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+.tournament_gallery a:hover::after,
+.homepage_gallery a:hover::after {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Lightbox grow animation */
@@ -182,6 +265,9 @@ span { color: #00274C; font-weight: bold; font-size: 1.2em; }
         margin: 20%;
         padding: 10px;
     }
+    header { margin-bottom: 36px; }
+    main { padding-top: 24px; }
+    section { margin-bottom: 48px; }
     h1 {
         font-size: 3em;
         margin-bottom: 30px;
@@ -189,17 +275,17 @@ span { color: #00274C; font-weight: bold; font-size: 1.2em; }
     }
     h2 {
         font-size: 2em;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
         text-shadow: 5px 5px #2f4c00;
     }
     h3 {
         font-size: 1.5em;
-        margin-bottom: 15px;
+        margin-bottom: 18px;
     }
-    p { font-size: 1.2em; }
+    p { font-size: 1.2em; margin-bottom: 24px; }
     img {
         width: 80%;
-        margin-bottom: 20px;
+        margin-bottom: 32px;
     }
     header img { width: 65%; }
     .grid {
@@ -224,6 +310,11 @@ span { color: #00274C; font-weight: bold; font-size: 1.2em; }
         margin: 5%;
         padding: 5%;
     }
+    header { margin-bottom: 48px; }
+    main { padding-top: 32px; }
+    section { margin-bottom: 64px; }
+    h2 { margin-bottom: 28px; }
+    p { margin-bottom: 28px; }
     .grid {
         grid-template-columns: repeat(3, 1fr);
         background-color: #2F65A7;
@@ -231,7 +322,7 @@ span { color: #00274C; font-weight: bold; font-size: 1.2em; }
     header img { width: 25%; }
     img {
         width: 50%;
-        margin-bottom: 40px;
+        margin-bottom: 48px;
     }
     .tournament_gallery { grid-template-columns: repeat(3, 1fr); }
     .tournament_gallery a img {
